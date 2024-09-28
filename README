@@ -1,0 +1,101 @@
+# WebGPT: Website Crawling and Query Response System
+
+## Overview
+
+WebGPT is a backend system built using Node.js that allows users to crawl websites, extract their content, and generate precise and context-specific answers to queries based on the crawled data. It leverages MongoDB for data storage, Redis for caching, and OpenAI API for generating AI-based responses to user queries. The system supports user authentication, ensuring that only authorized users can perform operations.
+
+## Features
+
+- **Website Crawling**: Crawl websites to extract text content and store it in MongoDB.
+- **Recursive Crawling**: Optionally crawl a website and its linked pages up to a configurable depth.
+- **User Authentication**: Register and login users using JWT-based authentication.
+- **Query Processing**: Generate intelligent responses to user queries based on crawled content using OpenAI's GPT API.
+- **Caching**: Cache website content and AI responses using Redis for optimized performance.
+- **API Access**: RESTful API endpoints for crawling, querying, user registration, and login.
+
+
+## Technologies Used
+
+- **Node.js & Express.js**: Backend framework for building APIs.
+- **MongoDB**: Database for storing crawled data.
+- **Mongoose**: ODM for MongoDB.
+- **Redis**: Caching system for website content and AI responses.
+- **Cheerio**: HTML parsing library for extracting website content.
+- **Axios**: HTTP client for making API requests.
+- **OpenAI API**: For generating AI-based responses to user queries.
+- **JWT (JSON Web Token)**: For secure user authentication.
+- **Bcrypt**: For password hashing.
+
+
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (>=14.x)
+- MongoDB
+- Redis
+- OpenAI API Key
+
+### Installation
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/PavanPRABHAKAR5/WebGPT.git
+    cd WebGPT
+    ```
+
+2. Install dependencies:
+    ```sh
+    npm install
+    ```
+
+3. Set up environment variables:
+    Create a `.env` file in the root directory and add the following:
+    ```env
+    MONGODB_URI=your_mongodb_uri
+    REDIS_URL=your_redis_url
+    OPENAI_API_KEY=your_openai_api_key
+    JWT_SECRET=your_jwt_secret
+    ```
+
+### Running the Application
+
+1. Start MongoDB and Redis servers.
+
+2. Run the application:
+    ```sh
+    npm start
+    ```
+
+3. The server will start on `http://localhost:3000`.
+
+### API Endpoints
+
+- **POST /api/register**: Register a new user.
+- **POST /api/login**: Login a user.
+- **POST /api/crawl**: Crawl a website.
+- **POST /api/query**: Query the crawled data.
+
+
+## How It Works
+
+### User Registration & Authentication
+Users register using their email and password. After successful registration, users can log in to receive a JWT token for authorization.
+
+### Crawling Websites
+Users can crawl websites by providing a URL. The system supports both single-page crawling and recursive crawling (multi-page) up to a specified depth. Crawled content is stored in MongoDB, and relevant data is cached in Redis for faster subsequent requests.
+
+### Querying Data
+Users submit a query related to a previously crawled website. The system retrieves the website content, processes it into chunks, and sends it to OpenAI's GPT model to generate a response.
+
+### Caching
+Crawled content and AI responses are cached using Redis to optimize performance and reduce API calls to OpenAI.
+
+## Future Improvements
+
+- **Enhanced Error Handling**: Improve error handling and logging mechanisms.
+- **Scalability**: Implement horizontal scaling for handling more concurrent users.
+- **Advanced Query Processing**: Enhance the query processing logic to support more complex queries.
+- **User Interface**: Develop a frontend interface for easier interaction with the system.
+- **Additional Data Sources**: Integrate additional data sources for more comprehensive responses.
