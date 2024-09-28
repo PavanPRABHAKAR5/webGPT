@@ -45,11 +45,7 @@ const fetchQueryController = async (req, res) => {
 
     const userId = req.user.toString();
 
-    const cachedData = await getCachedData(userId); // Ensure the userId is a string here
-    if (cachedData) {
-        console.log('Returning cached data');
-        return res.status(200).json({ data: cachedData });
-    }
+
 
     let limit = 30;
     try{
